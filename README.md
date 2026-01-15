@@ -82,7 +82,19 @@ Choisissez l'une des deux méthodes ci-dessous selon votre environnement de pré
     ./vendor/bin/sail npm install
     ./vendor/bin/sail npm run dev
     ```
-    *L'application sera accessible sur `http://localhost` (ou le port défini par Sail).*
+*L'application sera accessible sur `http://localhost:8080`.*
+
+**Si le port 8080 est déjà utilisé sur votre machine.**
+1. Arrêtez le conteneur
+    ```bash
+    ./vendor/bin/sail down
+    ```
+2. Modifiez le fichier .env
+    Ouvrez le fichier .env à la racine du projet et modifiez la valeur de `APP_PORT`
+3. Relancez Sail
+    ```bash
+    ./vendor/bin/sail up -d
+    ```
 
 ---
 
