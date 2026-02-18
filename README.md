@@ -6,31 +6,63 @@ Notre client est un hôtel indépendant qui gère encore ses réservations sur p
 L'application est techniquement initialisée (Laravel 11, Vue.js 3, Bootstrap 5), mais elle est vide.
 
 ## 🎯 Votre Mission
-L'hôtelier a besoin d'une interface simple pour gérer les **séjours (Stays)** de ses clients.
+L'hôtelier a besoin d'une interface simple pour gérer les **séjours (Stay)** de et ses **clients (Customer)**.
+
 Vous avez carte blanche sur l'implémentation technique, tant que la stack actuelle est respectée et que le résultat est fonctionnel et robuste.
 
-### Besoin Fonctionnel 1 : La saisie d'une réservation
+Vous devez respecter les besoins fonctionnels suivants, en prenant en compte les performances et la sécurité de l'application. 
+
+Vous pouvez également proposer des améliorations et d'autres petites fonctionnalités pour améliorer l'expérience utilisateur.
+
+### Besoin Fonctionnel 1 : Saisie de réservation
 L'hôtelier doit pouvoir cliquer sur un bouton "Nouveau Séjour" depuis l'accueil pour accéder à un formulaire de création.
 
 **Données à enregistrer pour un séjour :**
-* Nom du client principal.
-* Numéro de chambre.
-* Date d'arrivée.
-* Date de départ.
-* Prix total du séjour (en euros).
-* Statut (par défaut : "En attente").
+* Email du client
+* Nom du client
+* Prénom du client
+* Numéro de chambre
+* Date d'arrivée
+* Date de départ
+* Prix total du séjour (en euros)
+* Statut (_En attente_, _Validé_, _Annulé_)
 
 **Règles de gestion :**
-* Il est impératif que les dates soient cohérentes (on ne peut pas partir avant d'être arrivé).
-* Le prix doit être positif.
-* Une fois la réservation validée, l'hôtelier doit être redirigé vers la liste principale avec une confirmation visuelle.
+* Il est impératif que les dates soient cohérentes : on ne peut pas partir avant d'être arrivé
+* Le prix doit être positif
+* Une fois la réservation validée, l'hôtelier doit être redirigé vers la liste principale avec une confirmation visuelle
 
-### Besoin Fonctionnel 2 : Le planning des réservations
+### Besoin Fonctionnel 2 : Liste des réservations
 Sur la page d'accueil, l'hôtelier souhaite consulter l'historique des séjours sous forme de liste.
 
-**Critères d'affichage :**
-* Il veut pouvoir trier la liste par **Prix** ou par **Date d'arrivée** pour s'y retrouver.
-* Comme il y aura beaucoup de réservations, l'affichage ne doit présenter que **5 séjours par page** pour ne pas surcharger l'écran.
+**Fonctionnalités attendues :**
+* Il veut pouvoir trier la liste par _Prix_ ou par _Date d'arrivée_ pour s'y retrouver (triée par défaut par _Date d'arrivée_ descendant)
+* L'affichage ne doit présenter que **5 séjours par page** pour ne pas surcharger l'écran et optimiser les performances
+* Chaque séjour doit proposer les **actions** suivantes :
+    * **Modifier la réservation**
+    * **Supprimer la réservation**
+    * **Voir la fiche client**
+
+### Besoin Fonctionnel 3 : Liste des clients
+L'hôtelier souhaite avoir une page pour afficher la liste de tous ses clients.
+
+**Fonctionnalités attendues :**
+* La liste est triée par _Email_ par défaut
+* Afficher les données suivantes _Email_, _Nom_, _Prénom_, _Date du dernier séjour_
+* L'affichage ne doit présenter que **5 clients par page** pour ne pas surcharger l'écran et optimiser les performances
+* Chaque ligne doit proposer un bouton pour **Voir la fiche client**
+
+### Besoin Fonctionnel 4 : Fiche client
+L'hôtelier souhaite avoir une page pour afficher les détails d'un client.
+
+**Fonctionnalités attendues :**
+* Affichage des informations du client : _Email_, _Nom_, _Prénom_, _Date du dernier séjour_, _Nombre total de séjours_ et _Total dépensé_
+* Un bouton pour **Modifier le client** (_Nom_ et _Prénom_)
+* Un bouton pour **Supprimer le client** avec une confirmation : _Êtes-vous sûr de vouloir supprimer ce client, ainsi que toutes ses réservations ?_
+* La liste de tous ses séjours (triée par défaut par _Date d'arrivée_ descendant)
+* Chaque séjour doit proposer les **actions** suivantes :
+    * **Modifier la réservation**
+    * **Supprimer la réservation**
 
 ---
 
@@ -58,7 +90,7 @@ Choisissez l'une des deux méthodes ci-dessous selon votre environnement de pré
 ### Option B : Installation via Docker (Laravel Sail)
 *Si vous n'avez pas PHP/Composer installés localement, utilisez cette méthode.*
 
-1.  Installez les dépendances PHP via un conteneur temporaire (nécessaire car le dossier `vendor` est absent) :
+1.  Installez les dépendances PHP via un conteneur temporaire (nécessaire, car le dossier `vendor` est absent) :
     ```bash
     docker run --rm \
         -u "$(id -u):$(id -g)" \

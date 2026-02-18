@@ -13,6 +13,14 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">🏨 Hotel CRM</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Séjours</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Clients</a>
+                </li>
+            </ul>
             <span class="navbar-text text-white-50">
                 Administration
             </span>
